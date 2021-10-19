@@ -5,10 +5,9 @@ parse_git_branch() {
 export PS1="\[\033[0;35m\]\w\$(parse_git_branch): \[\033[0m\]"
 
 # Shortcuts to directories I often use
-alias code='cd ~/code'
 alias best='cd ~/code/best-act-prep'
 alias budget='cd ~/"Google Drive"/family-budget'
-alias server='python -m SimpleHTTPServer 8000'
+alias server='python -m SimpleHTTPServer 4000'
 
 # Shortcut to bash profile
 alias prof='vs ~/.bash_profile'
@@ -56,10 +55,32 @@ alias gi='git init'
 alias gro='git remote add origin'
 alias gru='git remote add upstream'
 alias gpu='git pull --rebase upstream master'
-alias gpo='git pull --rebase origin master'
+alias gpo='git pull origin master'
 alias gb='git checkout -b'
 alias gx='git branch -d'
 alias br='git branch'
+
+alias grl='git reset wm/ui.frontend/src/utils/builds/environments/local.js'
+alias grll='git reset src/utils/builds/local.js'
+alias grm='git reset wm/ui.frontend/src/styles/mixins.scss'
+alias grf='git reset wm/ui.frontend/src/fe-poc'
+alias grmm='git reset public/mock.model.json'
+alias gre='git reset public/endev.model.json'
+alias grmd='git reset wm/ui.frontend/public/us/en/mdsgraphic.model.json'
+alias gree='git reset .env.development'
+alias greee='git reset public/content/wm/us/en.model.json'
+alias grg='git reset wm/ui.frontend/src/utils/getContentUrl.js'
+alias grc='git reset wm/ui.frontend/src/store/createStore.js'
+alias grp='git reset package-lock.json'
+alias fd='git checkout feature/develop'
+alias pfd='git pull origin feature/develop'
+alias rs='git reset --soft head^1'
+alias gprb='git pull --rebase origin WMX'
+alias gpra='git pull --rebase origin feature/develop'
+alias grhh='git reset --hard head'
+alias gri='git reset wm/ui.frontend/src/index.js'
+alias grii='git reset src/index.js'
+alias gry='git reset yarn.lock'
 
 alias hosts='sudo vim /etc/hosts'
 
@@ -79,4 +100,20 @@ dl() {
     git branch -D $1
 }
 
+dr() {
+  git push origin :$1
+}
+
+pr() {
+  git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1
+}
+
+gpoo() {
+  git pull origin $1
+}
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
